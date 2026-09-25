@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist - Troca de Switches</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 0; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #d93934; }
+        h1 { font-size: 22px; text-align: center; margin-bottom: 20px; border-bottom: 3px solid #d93934; padding-bottom: 10px; }
+        h2 { font-size: 18px; margin-top: 30px; border-bottom: 1px solid #ddd; padding-bottom: 5px; background: #fdfdfd; }
+        h3 { font-size: 16px; margin-top: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 6px; font-size: 14px; color: #444; }
+        input[type="text"], input[type="date"], textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; background: #fafafa; }
+        input[type="text"]:focus, textarea:focus { outline: none; border-color: #d93934; background: #fff; }
+        textarea { resize: vertical; min-height: 80px; }
+        .checkbox-group { display: flex; align-items: flex-start; margin-bottom: 12px; padding: 8px; background: #f9f9f9; border-radius: 6px; border: 1px solid #eee; }
+        .checkbox-group input[type="checkbox"] { margin-top: 2px; margin-right: 12px; transform: scale(1.4); accent-color: #d93934; }
+        .checkbox-group label { margin-bottom: 0; font-weight: normal; font-size: 15px; line-height: 1.4; }
+        .radio-group { display: flex; gap: 15px; }
+        .radio-group label { font-weight: normal; font-size: 15px; display: flex; align-items: center; gap: 5px; }
+        .radio-group input[type="radio"] { transform: scale(1.3); accent-color: #d93934; }
+        .test-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 10px; border-bottom: 1px solid #eee; }
+        .test-row:nth-child(even) { background: #fafafa; }
+        .test-row label { margin-bottom: 0; font-size: 15px; }
+        .photo-upload { border: 2px dashed #b5b5b5; padding: 20px; text-align: center; border-radius: 8px; background: #f9f9f9; margin-bottom: 15px; cursor: pointer; transition: background 0.3s; }
+        .photo-upload:hover { background: #f1f1f1; border-color: #d93934; }
+        .photo-upload label { cursor: pointer; color: #555; font-size: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .photo-upload svg { width: 32px; height: 32px; fill: #777; }
+        .photo-upload input[type="file"] { display: none; }
+        .photo-preview { max-width: 100%; margin-top: 15px; display: none; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .btn-print { display: block; width: 100%; padding: 16px; background: #d93934; color: #fff; font-size: 18px; text-align: center; border: none; border-radius: 8px; cursor: pointer; margin-top: 30px; font-weight: bold; box-shadow: 0 4px 6px rgba(217, 57, 52, 0.3); }
+        .btn-print:hover { background: #b82d29; }
+        
+        @media print {
+            body { background: #fff; margin: 0; }
+            .container { box-shadow: none; padding: 0; max-width: 100%; }
+            .btn-print { display: none; }
+            .photo-upload { border: none; padding: 0; background: transparent; }
+            .photo-upload label { display: none; }
+            textarea { border: none; resize: none; overflow: hidden; background: transparent; padding: 0; }
+            input[type="text"], input[type="date"] { border: none; border-bottom: 1px dashed #999; border-radius: 0; padding: 5px 0; background: transparent; }
+            .checkbox-group { border: none; background: transparent; padding: 4px 0; margin-bottom: 4px; }
+            .test-row { padding: 6px 0; }
+            h2 { margin-top: 15px; }
+            .page-break { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CHECKLIST – TROCA DE SWITCHES EM LOJA</h1>
+        
+        <div class="form-group">
+            <label>Loja:</label>
+            <input type="text" id="loja" placeholder="Ex: 06-Guarujá">
+        </div>
+        <div class="form-group" style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 120px;">
+                <label>Data:</label>
+                <input type="date" id="data">
+            </div>
+            <div style="flex: 2; min-width: 200px;">
+                <label>Técnico:</label>
+                <input type="text" id="tecnico" value="Douglas Brito Malaquias">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Switch(es) substituído(s):</label>
+            <input type="text" id="switches" placeholder="Ex: 11, 12 e 13">
+        </div>
+
+        <h2>1. PRÉ-TROCA (Levantamento e Preparação)</h2>
+        <div class="checkbox-group">
+            <input type="checkbox" id="chk1"><label for="chk1">Identificar e registrar equipamentos: switches, cabos, portas utilizadas e uplinks. Etiquetar os cabos quando necessário.</label>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="chk2"><label for="chk2">Registrar o cenário atual: caixas, crediário, RH, Wi-Fi Corp, coletores, tablets e Wi-Fi de clientes.</label>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="chk3"><label for="chk3">Registrar eventuais problemas existentes antes da troca, evitando que sejam associados à mudança.</label>
+        </div>
+        
+        <div class="form-group" style="margin-top: 15px;">
+            <label>Observações pré-troca (Opcional):</label>
+            <textarea id="obs_pre" placeholder="Detalhes ou problemas identificados antes de iniciar..."></textarea>
+        </div>
+
+        <div class="photo-upload">
+            <label for="foto_antes">
+                <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2-2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                Tirar / Anexar Foto (Antes da Troca)
+            </label>
+            <input type="file" id="foto_antes" accept="image/*" capture="environment" onchange="previewImage(event, 'preview_antes')">
+            <img id="preview_antes" class="photo-preview">
+        </div>
+
+        <h2>2. TROCA DOS SWITCHES (Execução)</h2>
+        <div class="checkbox-group">
+            <input type="checkbox" id="chk4"><label for="chk4">Desligar e retirar os switches antigos.</label>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="chk5"><label for="chk5">Instalar os novos switches no rack.</label>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="chk6"><label for="chk6">Realizar a conexão dos cabos conforme identificação realizada no pré-troca.</label>
+        </div>
+
+        <h2>3. PÓS-TROCA (Rede e Infraestrutura)</h2>
+        <div class="checkbox-group">
+            <input type="checkbox" id="chk7"><label for="chk7">Validar conectividade geral da loja.</label>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="chk8"><label for="chk8">Realizar teste de desligamento e religamento dos switches, verificando se os serviços retornam.</label>
+        </div>
+
+        <h3>Teste Funcional</h3>
+        <div class="test-row"><label>Caixas</label> <div class="radio-group"><label><input type="radio" name="caixas" value="OK">OK</label> <label><input type="radio" name="caixas" value="NOK">NOK</label></div></div>
+        <div class="test-row"><label>Crediário</label> <div class="radio-group"><label><input type="radio" name="cred" value="OK">OK</label> <label><input type="radio" name="cred" value="NOK">NOK</label></div></div>
+        <div class="test-row"><label>RH</label> <div class="radio-group"><label><input type="radio" name="rh" value="OK">OK</label> <label><input type="radio" name="rh" value="NOK">NOK</label></div></div>
+        <div class="test-row"><label>Wi-Fi Corp</label> <div class="radio-group"><label><input type="radio" name="wcorp" value="OK">OK</label> <label><input type="radio" name="wcorp" value="NOK">NOK</label></div></div>
+        <div class="test-row"><label>Coletores</label> <div class="radio-group"><label><input type="radio" name="col" value="OK">OK</label> <label><input type="radio" name="col" value="NOK">NOK</label></div></div>
+        <div class="test-row"><label>Tablets</label> <div class="radio-group"><label><input type="radio" name="tab" value="OK">OK</label> <label><input type="radio" name="tab" value="NOK">NOK</label></div></div>
+        <div class="test-row"><label>Wi-Fi Clientes</label> <div class="radio-group"><label><input type="radio" name="wcli" value="OK">OK</label> <label><input type="radio" name="wcli" value="NOK">NOK</label></div></div>
+
+        <div class="photo-upload" style="margin-top: 20px;">
+            <label for="foto_depois">
+                <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2-2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                Tirar / Anexar Foto (Rack DEPOIS)
+            </label>
+            <input type="file" id="foto_depois" accept="image/*" capture="environment" onchange="previewImage(event, 'preview_depois')">
+            <img id="preview_depois" class="photo-preview">
+        </div>
+        
+        <div class="photo-upload">
+            <label for="foto_caixas">
+                <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2-2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                Tirar / Anexar Foto (Cabeamento dos Caixas)
+            </label>
+            <input type="file" id="foto_caixas" accept="image/*" capture="environment" onchange="previewImage(event, 'preview_caixas')">
+            <img id="preview_caixas" class="photo-preview">
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2>4. ENCERRAMENTO</h2>
+        <div class="form-group">
+            <label>Resultado da Troca:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="resultado" value="Concluída"> CONCLUÍDA</label>
+                <label><input type="radio" name="resultado" value="Concluída com pendência"> CONCLUÍDA COM PENDÊNCIA</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Pendências / Observações (Opcional):</label>
+            <textarea id="obs_fim" placeholder="N/A ou detalhe a pendência..."></textarea>
+        </div>
+
+        <div class="form-group" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+            <div style="flex: 1; min-width: 200px;">
+                <label>Ass. Técnico Responsável:</label>
+                <input type="text" id="tec_final" value="Douglas Brito Malaquias">
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+                <label>Ass. Responsável da Loja:</label>
+                <input type="text" id="resp_loja" placeholder="Nome do responsável no local">
+            </div>
+        </div>
+
+        <button class="btn-print" onclick="window.print()">Gerar PDF / Enviar Relatório</button>
+    </div>
+
+    <script>
+        function previewImage(event, previewId) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById(previewId);
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            if(event.target.files[0]){
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        }
+        
+        document.getElementById('data').valueAsDate = new Date();
+        
+        document.querySelectorAll('textarea').forEach(el => {
+            el.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+        });
+    </script>
+</body>
+</html>
